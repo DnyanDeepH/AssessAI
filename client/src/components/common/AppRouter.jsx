@@ -11,31 +11,31 @@ import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
 // Public Components
-import HomePage from "../public/HomePage.jsx";
-import AboutPage from "../public/AboutPage.jsx";
-import LoginPage from "../public/LoginPage.jsx";
-import RegisterPage from "../public/RegisterPage.jsx";
-import AuthRedirect from "./AuthRedirect.jsx";
-import ErrorBoundary from "./ErrorBoundary.jsx";
+import { HomePage, AboutPage, LoginPage, RegisterPage } from "../public";
+import { AuthRedirect, ErrorBoundary } from "./";
 
 // Student Components
-import StudentLayout from "../student/StudentLayout.jsx";
-import StudentDashboard from "../student/Dashboard.jsx";
-import ExamList from "../student/ExamList.jsx";
-import ExamInterface from "../student/ExamInterface.jsx";
-import AIPracticeZone from "../student/AIPracticeZone.jsx";
-import StudentProfile from "../student/Profile.jsx";
-import StudentResults from "../student/Results.jsx";
+import {
+  StudentLayout,
+  StudentDashboard,
+  ExamList,
+  ExamInterface,
+  AIPracticeZone,
+  StudentProfile,
+  StudentResults,
+} from "../student";
 
 // Admin Components
-import AdminLayout from "../admin/AdminLayout.jsx";
-import AdminDashboard from "../admin/Dashboard.jsx";
-import SimpleAdminDashboard from "../admin/SimpleAdminDashboard.jsx";
-import UserManagement from "../admin/UserManagement.jsx";
-import QuestionBank from "../admin/QuestionBank.jsx";
-import ExamManagement from "../admin/ExamManagement.jsx";
-import Analytics from "../admin/Analytics.jsx";
-import SessionAnalytics from "../admin/SessionAnalytics.jsx";
+import {
+  AdminLayout,
+  AdminDashboard,
+  SimpleAdminDashboard,
+  UserManagement,
+  QuestionBank,
+  ExamManagement,
+  Analytics,
+  SessionAnalytics,
+} from "../admin";
 
 // Layout component with navigation
 const Layout = () => {
