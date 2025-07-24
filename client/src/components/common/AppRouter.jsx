@@ -13,7 +13,7 @@ import MainNavigation from "./MainNavigation";
 // Temporary inline components to bypass import issues
 const HomePage = () => {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <div style={{ padding: "2rem", textAlign: "center" }}>
       <h1>AssessAI Platform</h1>
       <p>Welcome to the AI-powered assessment platform.</p>
       <p>Please login to access your dashboard.</p>
@@ -23,9 +23,57 @@ const HomePage = () => {
 
 const AboutPage = () => {
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: "2rem" }}>
       <h1>About AssessAI</h1>
       <p>An innovative platform for AI-powered assessments and learning.</p>
+    </div>
+  );
+};
+
+const LoginPage = () => {
+  return (
+    <div style={{ padding: "2rem", maxWidth: "400px", margin: "0 auto" }}>
+      <h1>Login</h1>
+      <p>Please login to access your account.</p>
+      <form>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Email:</label>
+          <input type="email" style={{ width: "100%", padding: "0.5rem" }} />
+        </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Password:</label>
+          <input type="password" style={{ width: "100%", padding: "0.5rem" }} />
+        </div>
+        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
+
+const RegisterPage = () => {
+  return (
+    <div style={{ padding: "2rem", maxWidth: "400px", margin: "0 auto" }}>
+      <h1>Register</h1>
+      <p>Create a new account.</p>
+      <form>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Name:</label>
+          <input type="text" style={{ width: "100%", padding: "0.5rem" }} />
+        </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Email:</label>
+          <input type="email" style={{ width: "100%", padding: "0.5rem" }} />
+        </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Password:</label>
+          <input type="password" style={{ width: "100%", padding: "0.5rem" }} />
+        </div>
+        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
+          Register
+        </button>
+      </form>
     </div>
   );
 };
@@ -33,8 +81,8 @@ const AboutPage = () => {
 // Public Components - using inline components temporarily
 // import HomePage from "../public/HomePage.jsx";
 // import AboutPage from "../public/AboutPage.jsx";
-import LoginPage from "../public/LoginPage.jsx";
-import RegisterPage from "../public/RegisterPage.jsx";
+// import LoginPage from "../public/LoginPage.jsx";
+// import RegisterPage from "../public/RegisterPage.jsx";
 import AuthRedirect from "./AuthRedirect.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
 
