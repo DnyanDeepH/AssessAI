@@ -10,7 +10,7 @@ import { Box, Typography, Container, CircularProgress } from "@mui/material";
 import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
-// Public Components  
+// Public Components
 import HomePage from "../public/HomePage.jsx";
 import AboutPage from "../public/AboutPage.jsx";
 import LoginPage from "../public/LoginPage.jsx";
