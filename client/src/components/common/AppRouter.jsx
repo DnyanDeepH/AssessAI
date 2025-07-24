@@ -11,31 +11,31 @@ import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
 // Public Components
-import HomePage from "../../components/public/HomePage.jsx";
-import AboutPage from "../../components/public/AboutPage.jsx";
-import LoginPage from "../../components/public/LoginPage.jsx";
-import RegisterPage from "../../components/public/RegisterPage.jsx";
-import AuthRedirect from "../../components/common/AuthRedirect.jsx";
-import ErrorBoundary from "../../components/common/ErrorBoundary.jsx";
+import HomePage from "@components/public/HomePage";
+import AboutPage from "@components/public/AboutPage";
+import LoginPage from "@components/public/LoginPage";
+import RegisterPage from "@components/public/RegisterPage";
+import AuthRedirect from "@components/common/AuthRedirect";
+import ErrorBoundary from "@components/common/ErrorBoundary";
 
 // Student Components
-import StudentLayout from "../../components/student/StudentLayout.jsx";
-import StudentDashboard from "../../components/student/Dashboard.jsx";
-import ExamList from "../../components/student/ExamList.jsx";
-import ExamInterface from "../../components/student/ExamInterface.jsx";
-import AIPracticeZone from "../../components/student/AIPracticeZone.jsx";
-import StudentProfile from "../../components/student/Profile.jsx";
-import StudentResults from "../../components/student/Results.jsx";
+import StudentLayout from "@components/student/StudentLayout";
+import StudentDashboard from "@components/student/Dashboard";
+import ExamList from "@components/student/ExamList";
+import ExamInterface from "@components/student/ExamInterface";
+import AIPracticeZone from "@components/student/AIPracticeZone";
+import StudentProfile from "@components/student/Profile";
+import StudentResults from "@components/student/Results";
 
 // Admin Components
-import AdminLayout from "../../components/admin/AdminLayout.jsx";
-import AdminDashboard from "../../components/admin/Dashboard.jsx";
-import SimpleAdminDashboard from "../../components/admin/SimpleAdminDashboard.jsx";
-import UserManagement from "../../components/admin/UserManagement.jsx";
-import QuestionBank from "../../components/admin/QuestionBank.jsx";
-import ExamManagement from "../../components/admin/ExamManagement.jsx";
-import Analytics from "../../components/admin/Analytics.jsx";
-import SessionAnalytics from "../../components/admin/SessionAnalytics.jsx";
+import AdminLayout from "@components/admin/AdminLayout";
+import AdminDashboard from "@components/admin/Dashboard";
+import SimpleAdminDashboard from "@components/admin/SimpleAdminDashboard";
+import UserManagement from "@components/admin/UserManagement";
+import QuestionBank from "@components/admin/QuestionBank";
+import ExamManagement from "@components/admin/ExamManagement";
+import Analytics from "@components/admin/Analytics";
+import SessionAnalytics from "@components/admin/SessionAnalytics";
 
 // Layout component with navigation
 const Layout = () => {
