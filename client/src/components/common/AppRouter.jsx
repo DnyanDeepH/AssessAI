@@ -11,7 +11,12 @@ import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
 // Public Components
-import { HomePage, AboutPage, LoginPage, RegisterPage } from "../public/index.js";
+import {
+  HomePage,
+  AboutPage,
+  LoginPage,
+  RegisterPage,
+} from "../public/index.js";
 import { AuthRedirect, ErrorBoundary } from "./index.js";
 
 // Student Components
