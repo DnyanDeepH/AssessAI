@@ -38,6 +38,7 @@ app.use("/api/student/exams/", rateLimiter("exam"));
 // CORS configuration
 const allowedOrigins = [
   process.env.CLIENT_URL || "http://localhost:3000",
+  "http://localhost:3001", // Allow port 3001 as well
   process.env.FRONTEND_URL, // Add this env var for production frontend
 ];
 
@@ -47,12 +48,16 @@ app.use(
       // Allow requests with no origin (mobile apps, curl, etc.)
       if (!origin) return callback(null, true);
 
+      // In development, allow localhost on any port
       if (
-        allowedOrigins.some(
-          (allowed) =>
-            allowed && origin.includes(allowed.replace(/https?:\/\//, ""))
-        )
+        process.env.NODE_ENV !== "production" &&
+        origin.includes("localhost")
       ) {
+        return callback(null, true);
+      }
+
+      // Check against allowed origins
+      if (allowedOrigins.some((allowed) => allowed && origin === allowed)) {
         return callback(null, true);
       }
 
