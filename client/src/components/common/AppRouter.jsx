@@ -10,9 +10,29 @@ import { Box, Typography, Container, CircularProgress } from "@mui/material";
 import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
-// Public Components
-import HomePage from "../public/HomePage.jsx";
-import AboutPage from "../public/AboutPage.jsx";
+// Temporary inline components to bypass import issues
+const HomePage = () => {
+  return (
+    <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <h1>AssessAI Platform</h1>
+      <p>Welcome to the AI-powered assessment platform.</p>
+      <p>Please login to access your dashboard.</p>
+    </div>
+  );
+};
+
+const AboutPage = () => {
+  return (
+    <div style={{ padding: '2rem' }}>
+      <h1>About AssessAI</h1>
+      <p>An innovative platform for AI-powered assessments and learning.</p>
+    </div>
+  );
+};
+
+// Public Components - using inline components temporarily
+// import HomePage from "../public/HomePage.jsx";
+// import AboutPage from "../public/AboutPage.jsx";
 import LoginPage from "../public/LoginPage.jsx";
 import RegisterPage from "../public/RegisterPage.jsx";
 import AuthRedirect from "./AuthRedirect.jsx";
