@@ -11,8 +11,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import MainNavigation from "./MainNavigation";
 
 // Public Components
-import { HomePage, AboutPage, LoginPage, RegisterPage } from "../public";
-import { AuthRedirect, ErrorBoundary } from "./";
+import { HomePage, AboutPage, LoginPage, RegisterPage } from "../public/index.js";
+import { AuthRedirect, ErrorBoundary } from "./index.js";
 
 // Student Components
 import {
@@ -23,7 +23,7 @@ import {
   AIPracticeZone,
   StudentProfile,
   StudentResults,
-} from "../student";
+} from "../student/index.js";
 
 // Admin Components
 import {
@@ -35,7 +35,7 @@ import {
   ExamManagement,
   Analytics,
   SessionAnalytics,
-} from "../admin";
+} from "../admin/index.js";
 
 // Layout component with navigation
 const Layout = () => {
