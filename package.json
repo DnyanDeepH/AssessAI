@@ -1,0 +1,28 @@
+{
+    "name": "assessai-platform",
+    "version": "1.0.0",
+    "description": "AI-powered online assessment platform built with MERN stack",
+    "main": "index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+        "server:dev": "cd server && npm run dev",
+        "client:dev": "cd client && npm run dev",
+        "server:start": "cd server && npm start",
+        "client:build": "cd client && npm run build",
+        "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+        "test": "cd server && npm test && cd ../client && npm test"
+    },
+    "keywords": [
+        "assessment",
+        "education",
+        "ai",
+        "mern",
+        "react",
+        "nodejs"
+    ],
+    "author": "AssessAI Team",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
