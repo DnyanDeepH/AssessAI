@@ -1,6 +1,9 @@
 import axios from "axios";
 import { storage, CONSTANTS } from "../utils/index.ts";
 
+// Request deduplication map to prevent duplicate API calls
+const pendingRequests = new Map();
+
 // Create axios instance with base configuration
 const api = axios.create({
   baseURL: CONSTANTS.API_BASE_URL,
@@ -10,13 +13,29 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add auth token
+// Request interceptor to add auth token and handle deduplication
 api.interceptors.request.use(
   (config) => {
     const token = storage.get(CONSTANTS.TOKEN_KEY);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Create a unique key for this request
+    const requestKey = `${config.method}_${config.url}_${JSON.stringify(
+      config.params || {}
+    )}_${JSON.stringify(config.data || {})}`;
+
+    // If this request is already pending, return the existing promise
+    if (pendingRequests.has(requestKey)) {
+      console.log(`Deduplicating request: ${requestKey}`);
+      config.cancelToken = axios.CancelToken.source().token;
+      return Promise.reject(new axios.Cancel("Duplicate request"));
+    }
+
+    // Store the request key
+    config.requestKey = requestKey;
+
     return config;
   },
   (error) => {
@@ -27,13 +46,31 @@ api.interceptors.request.use(
 // Response interceptor for error handling and token refresh
 api.interceptors.response.use(
   (response) => {
+    // Remove the request from pending requests
+    if (response.config.requestKey) {
+      pendingRequests.delete(response.config.requestKey);
+    }
     return response;
   },
   async (error) => {
     const originalRequest = error.config;
 
+    // Remove the request from pending requests
+    if (originalRequest && originalRequest.requestKey) {
+      pendingRequests.delete(originalRequest.requestKey);
+    }
+
+    // Skip duplicate request errors
+    if (axios.isCancel(error)) {
+      return Promise.reject(error);
+    }
+
     // Handle 401 errors (unauthorized)
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
 
       // Clear stored auth data
@@ -79,15 +116,31 @@ const retryRequest = async (requestFn, maxRetries = 3, delay = 1000) => {
   }
 };
 
-// Generic API methods
+// Generic API methods with request deduplication
 export const apiService = {
   // GET request
   get: async (url, config = {}) => {
-    return retryRequest(() => api.get(url, config));
+    const requestKey = `GET_${url}_${JSON.stringify(config.params || {})}`;
+
+    // If request is already pending, wait for it
+    if (pendingRequests.has(requestKey)) {
+      return pendingRequests.get(requestKey);
+    }
+
+    // Create and store the request promise
+    const requestPromise = retryRequest(() => api.get(url, config)).finally(
+      () => {
+        pendingRequests.delete(requestKey);
+      }
+    );
+
+    pendingRequests.set(requestKey, requestPromise);
+    return requestPromise;
   },
 
   // POST request
   post: async (url, data = {}, config = {}) => {
+    // POST requests are typically not deduplicated as they can have side effects
     return retryRequest(() => api.post(url, data, config));
   },
 

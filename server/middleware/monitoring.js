@@ -28,11 +28,12 @@ const logger =
  * @param {Function} next - Express next function
  */
 const monitorRequest = (req, res, next) => {
-  // Skip monitoring for health check endpoints to avoid noise
+  // Skip monitoring for health check endpoints and OPTIONS requests to reduce noise
   if (
     req.path === "/health" ||
     req.path.startsWith("/api/health") ||
-    req.path === "/metrics"
+    req.path === "/metrics" ||
+    (req.method === "OPTIONS" && process.env.NODE_ENV === "development")
   ) {
     return next();
   }
@@ -47,15 +48,21 @@ const monitorRequest = (req, res, next) => {
   req.requestStartTime = startTime;
   req.requestId = requestId;
 
-  // Log request
-  logger.info("API Request", {
-    requestId,
-    method: req.method,
-    path: req.path,
-    query: req.query,
-    ip: req.ip,
-    userAgent: req.get("user-agent"),
-  });
+  // Only log non-OPTIONS requests or in production
+  const shouldLog =
+    req.method !== "OPTIONS" || process.env.NODE_ENV === "production";
+
+  // Log request (reduced verbosity in development)
+  if (shouldLog) {
+    logger.info("API Request", {
+      requestId,
+      method: req.method,
+      path: req.path,
+      query: req.query,
+      ip: req.ip,
+      userAgent: req.get("user-agent"),
+    });
+  }
 
   // Capture response metrics when the response is finished
   res.on("finish", () => {
@@ -71,14 +78,17 @@ const monitorRequest = (req, res, next) => {
       recordError(errorType, `${req.method} ${req.path} - ${res.statusCode}`);
     }
 
-    logger.log(level, "API Response", {
-      requestId,
-      method: req.method,
-      path: req.path,
-      statusCode: res.statusCode,
-      duration: `${duration}ms`,
-      contentLength: res.get("content-length") || 0,
-    });
+    // Only log response if we should log (reduces noise)
+    if (shouldLog) {
+      logger.log(level, "API Response", {
+        requestId,
+        method: req.method,
+        path: req.path,
+        statusCode: res.statusCode,
+        duration: `${duration}ms`,
+        contentLength: res.get("content-length") || 0,
+      });
+    }
   });
 
   next();

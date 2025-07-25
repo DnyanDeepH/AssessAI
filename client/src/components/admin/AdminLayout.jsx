@@ -13,8 +13,6 @@ import {
   ListItemIcon,
   ListItemText,
   Avatar,
-  Menu,
-  MenuItem,
   Badge,
   useTheme,
   useMediaQuery,
@@ -26,12 +24,10 @@ import {
   Quiz,
   Assignment,
   Analytics,
-  Settings,
   Logout,
   AccountCircle,
   Notifications,
-  ChevronLeft,
-  Home,
+  AdminPanelSettings,
 } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -42,7 +38,6 @@ const AdminLayout = ({ children }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useAuth();
@@ -51,16 +46,7 @@ const AdminLayout = ({ children }) => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleProfileMenuClose = () => {
-    setAnchorEl(null);
-  };
-
   const handleLogout = async () => {
-    handleProfileMenuClose();
     await logout();
     navigate("/");
   };
@@ -100,19 +86,58 @@ const AdminLayout = ({ children }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          px: [1],
-          bgcolor: "primary.main",
+          px: 3,
+          py: 2,
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           color: "white",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <Typography variant="h6" noWrap component="div">
-          AssessAI Admin
-        </Typography>
+        <Avatar
+          sx={{
+            bgcolor: "white",
+            color: "primary.main",
+            mr: 2,
+            width: 40,
+            height: 40,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          }}
+        >
+          <AdminPanelSettings />
+        </Avatar>
+        <Box>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ fontWeight: "bold" }}
+          >
+            AssessAI Admin
+          </Typography>
+          <Typography variant="caption" sx={{ opacity: 0.8 }}>
+            Admin Portal
+          </Typography>
+        </Box>
+
+        {/* Decorative Background Element */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: -20,
+            right: -20,
+            width: 80,
+            height: 80,
+            borderRadius: "50%",
+            bgcolor: "rgba(255,255,255,0.1)",
+            zIndex: 0,
+          }}
+        />
       </Toolbar>
-      <Divider />
-      <List>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
+      <Divider sx={{ bgcolor: "rgba(0,0,0,0.1)" }} />
+      <List sx={{ p: 2 }}>
+        {menuItems.map((item, index) => (
+          <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               selected={location.pathname === item.path}
               onClick={() => {
@@ -122,18 +147,29 @@ const AdminLayout = ({ children }) => {
                 }
               }}
               sx={{
+                borderRadius: 3,
+                py: 1.5,
+                px: 2,
+                transition: "all 0.3s ease-in-out",
                 "&.Mui-selected": {
-                  backgroundColor: "primary.light",
-                  color: "primary.contrastText",
+                  background:
+                    "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+                  color: "white",
+                  boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                  transform: "translateX(8px)",
                   "& .MuiListItemIcon-root": {
-                    color: "primary.contrastText",
+                    color: "white",
+                  },
+                  "& .MuiListItemText-primary": {
+                    fontWeight: 600,
                   },
                 },
                 "&:hover": {
-                  backgroundColor: "primary.light",
-                  color: "primary.contrastText",
+                  backgroundColor: "rgba(102, 126, 234, 0.1)",
+                  transform: "translateX(4px)",
+                  boxShadow: "0 2px 8px rgba(102, 126, 234, 0.2)",
                   "& .MuiListItemIcon-root": {
-                    color: "primary.contrastText",
+                    color: "#667eea",
                   },
                 },
               }}
@@ -144,38 +180,102 @@ const AdminLayout = ({ children }) => {
                     location.pathname === item.path
                       ? "inherit"
                       : "text.secondary",
+                  minWidth: 48,
                 }}
               >
-                {item.icon}
+                <Avatar
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    bgcolor:
+                      location.pathname === item.path
+                        ? "rgba(255,255,255,0.2)"
+                        : "rgba(102, 126, 234, 0.1)",
+                    color:
+                      location.pathname === item.path ? "white" : "#667eea",
+                  }}
+                >
+                  {item.icon}
+                </Avatar>
               </ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemText
+                primary={item.text}
+                primaryTypographyProps={{
+                  fontWeight: location.pathname === item.path ? 600 : 500,
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        <ListItem disablePadding>
+      <Divider sx={{ bgcolor: "rgba(0,0,0,0.1)", mx: 2 }} />
+      <List sx={{ p: 2 }}>
+        <ListItem disablePadding sx={{ mb: 1 }}>
           <ListItemButton
-            onClick={() => {
-              navigate("/");
-              if (isMobile) {
-                setMobileOpen(false);
-              }
+            sx={{
+              borderRadius: 3,
+              py: 1.5,
+              px: 2,
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                backgroundColor: "rgba(102, 126, 234, 0.1)",
+                transform: "translateX(4px)",
+                boxShadow: "0 2px 8px rgba(102, 126, 234, 0.2)",
+                "& .MuiListItemIcon-root": {
+                  color: "#667eea",
+                },
+              },
             }}
           >
-            <ListItemIcon>
-              <Home />
+            <ListItemIcon sx={{ minWidth: 48 }}>
+              <Avatar
+                sx={{
+                  width: 36,
+                  height: 36,
+                  bgcolor: "rgba(102, 126, 234, 0.1)",
+                  color: "#667eea",
+                }}
+              >
+                <AccountCircle />
+              </Avatar>
             </ListItemIcon>
-            <ListItemText primary="Back to Home" />
+            <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <Settings />
+        <ListItem disablePadding sx={{ mb: 1 }}>
+          <ListItemButton
+            onClick={handleLogout}
+            sx={{
+              borderRadius: 3,
+              py: 1.5,
+              px: 2,
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                backgroundColor: "rgba(244, 67, 54, 0.1)",
+                transform: "translateX(4px)",
+                boxShadow: "0 2px 8px rgba(244, 67, 54, 0.2)",
+                "& .MuiListItemIcon-root": {
+                  color: "#f44336",
+                },
+                "& .MuiListItemText-primary": {
+                  color: "#f44336",
+                },
+              },
+            }}
+          >
+            <ListItemIcon sx={{ minWidth: 48 }}>
+              <Avatar
+                sx={{
+                  width: 36,
+                  height: 36,
+                  bgcolor: "rgba(244, 67, 54, 0.1)",
+                  color: "#f44336",
+                }}
+              >
+                <Logout />
+              </Avatar>
             </ListItemIcon>
-            <ListItemText primary="Settings" />
+            <ListItemText primary="Logout" />
           </ListItemButton>
         </ListItem>
       </List>
@@ -189,6 +289,9 @@ const AdminLayout = ({ children }) => {
         sx={{
           width: { md: `calc(100% - ${drawerWidth}px)` },
           ml: { md: `${drawerWidth}px` },
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 4px 20px rgba(102, 126, 234, 0.15)",
         }}
       >
         <Toolbar>
@@ -197,69 +300,83 @@ const AdminLayout = ({ children }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
+            sx={{
+              mr: 2,
+              display: { md: "none" },
+              bgcolor: "rgba(255, 255, 255, 0.1)",
+              "&:hover": {
+                bgcolor: "rgba(255, 255, 255, 0.2)",
+              },
+            }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Admin Panel
-          </Typography>
+
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                fontWeight: "bold",
+                textShadow: "0 2px 4px rgba(0,0,0,0.1)",
+              }}
+            >
+              Admin Panel
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                opacity: 0.8,
+                display: { xs: "none", sm: "block" },
+              }}
+            >
+              Management Dashboard
+            </Typography>
+          </Box>
 
           {/* Notifications */}
-          <IconButton size="large" color="inherit" sx={{ mr: 1 }}>
+          <IconButton
+            size="large"
+            color="inherit"
+            sx={{
+              mr: 2,
+              bgcolor: "rgba(255, 255, 255, 0.1)",
+              "&:hover": {
+                bgcolor: "rgba(255, 255, 255, 0.2)",
+              },
+            }}
+          >
             <Badge badgeContent={0} color="error">
               <Notifications />
             </Badge>
           </IconButton>
 
-          {/* Profile Menu */}
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <Avatar sx={{ width: 32, height: 32, bgcolor: "secondary.main" }}>
+          {/* Profile Section */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Box
+              sx={{ display: { xs: "none", sm: "block" }, textAlign: "right" }}
+            >
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                {user?.name || "Admin"}
+              </Typography>
+              <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                Admin Account
+              </Typography>
+            </Box>
+            <Avatar
+              sx={{
+                width: 40,
+                height: 40,
+                bgcolor: "white",
+                color: "#667eea",
+                fontWeight: "bold",
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+              }}
+            >
               {user?.name?.charAt(0).toUpperCase() || "A"}
             </Avatar>
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorEl)}
-            onClose={handleProfileMenuClose}
-          >
-            <MenuItem onClick={handleProfileMenuClose}>
-              <ListItemIcon>
-                <AccountCircle fontSize="small" />
-              </ListItemIcon>
-              Profile
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuClose}>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
-            <Divider />
-            <MenuItem onClick={handleLogout}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
 
@@ -280,6 +397,9 @@ const AdminLayout = ({ children }) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              background: "rgba(255, 255, 255, 0.95)",
+              backdropFilter: "blur(20px)",
+              borderRight: "1px solid rgba(255, 255, 255, 0.2)",
             },
           }}
         >
@@ -294,6 +414,9 @@ const AdminLayout = ({ children }) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              background: "rgba(255, 255, 255, 0.95)",
+              backdropFilter: "blur(20px)",
+              borderRight: "1px solid rgba(255, 255, 255, 0.2)",
             },
           }}
           open

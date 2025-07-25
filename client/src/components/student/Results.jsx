@@ -185,13 +185,56 @@ const StudentResults = () => {
     <Container maxWidth="lg">
       <Box sx={{ my: 4 }}>
         {/* Header */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            My Results
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            View your exam results and performance analytics
-          </Typography>
+        <Box
+          sx={{
+            mb: 4,
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)",
+            backdropFilter: "blur(10px)",
+            borderRadius: 3,
+            p: 4,
+            border: "1px solid rgba(255,255,255,0.2)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+            <Avatar
+              sx={{
+                bgcolor: "primary.main",
+                mr: 2,
+                width: 48,
+                height: 48,
+                background: "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+              }}
+            >
+              <Assessment />
+            </Avatar>
+            <Box>
+              <Typography
+                variant="h4"
+                component="h1"
+                sx={{
+                  fontWeight: "bold",
+                  background:
+                    "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  mb: 1,
+                }}
+              >
+                My Results
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "text.secondary",
+                  fontWeight: 500,
+                }}
+              >
+                View your exam results and performance analytics
+              </Typography>
+            </Box>
+          </Box>
         </Box>
 
         {/* Success Message */}
@@ -215,15 +258,53 @@ const StudentResults = () => {
         {/* Statistics Cards */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
           <Grid item xs={12} sm={6} md={3}>
-            <Card elevation={2}>
-              <CardContent sx={{ textAlign: "center" }}>
-                <Avatar sx={{ bgcolor: "primary.main", mx: "auto", mb: 2 }}>
-                  <Assessment />
+            <Card
+              elevation={0}
+              sx={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                backdropFilter: "blur(10px)",
+                borderRadius: 3,
+                border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                },
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", p: 3 }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(33, 150, 243, 0.1)",
+                    color: "#2196f3",
+                    mx: "auto",
+                    mb: 2,
+                    width: 56,
+                    height: 56,
+                  }}
+                >
+                  <Assessment sx={{ fontSize: 28 }} />
                 </Avatar>
-                <Typography variant="h4" component="div" color="primary">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#2196f3",
+                    mb: 1,
+                  }}
+                >
                   {results.length}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 500,
+                  }}
+                >
                   Total Exams
                 </Typography>
               </CardContent>
@@ -231,15 +312,53 @@ const StudentResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <Card elevation={2}>
-              <CardContent sx={{ textAlign: "center" }}>
-                <Avatar sx={{ bgcolor: "success.main", mx: "auto", mb: 2 }}>
-                  <TrendingUp />
+            <Card
+              elevation={0}
+              sx={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                backdropFilter: "blur(10px)",
+                borderRadius: 3,
+                border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                },
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", p: 3 }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(76, 175, 80, 0.1)",
+                    color: "#4caf50",
+                    mx: "auto",
+                    mb: 2,
+                    width: 56,
+                    height: 56,
+                  }}
+                >
+                  <TrendingUp sx={{ fontSize: 28 }} />
                 </Avatar>
-                <Typography variant="h4" component="div" color="success.main">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#4caf50",
+                    mb: 1,
+                  }}
+                >
                   {Math.round(stats.average)}%
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 500,
+                  }}
+                >
                   Average Score
                 </Typography>
               </CardContent>
@@ -247,15 +366,53 @@ const StudentResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <Card elevation={2}>
-              <CardContent sx={{ textAlign: "center" }}>
-                <Avatar sx={{ bgcolor: "warning.main", mx: "auto", mb: 2 }}>
-                  <CheckCircle />
+            <Card
+              elevation={0}
+              sx={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                backdropFilter: "blur(10px)",
+                borderRadius: 3,
+                border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                },
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", p: 3 }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(255, 193, 7, 0.1)",
+                    color: "#ff9800",
+                    mx: "auto",
+                    mb: 2,
+                    width: 56,
+                    height: 56,
+                  }}
+                >
+                  <CheckCircle sx={{ fontSize: 28 }} />
                 </Avatar>
-                <Typography variant="h4" component="div" color="warning.main">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#ff9800",
+                    mb: 1,
+                  }}
+                >
                   {stats.passed}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 500,
+                  }}
+                >
                   Passed Exams
                 </Typography>
               </CardContent>
@@ -263,15 +420,53 @@ const StudentResults = () => {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <Card elevation={2}>
-              <CardContent sx={{ textAlign: "center" }}>
-                <Avatar sx={{ bgcolor: "info.main", mx: "auto", mb: 2 }}>
-                  <TrendingUp />
+            <Card
+              elevation={0}
+              sx={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                backdropFilter: "blur(10px)",
+                borderRadius: 3,
+                border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                },
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", p: 3 }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(255, 87, 34, 0.1)",
+                    color: "#ff5722",
+                    mx: "auto",
+                    mb: 2,
+                    width: 56,
+                    height: 56,
+                  }}
+                >
+                  <TrendingUp sx={{ fontSize: 28 }} />
                 </Avatar>
-                <Typography variant="h4" component="div" color="info.main">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#ff5722",
+                    mb: 1,
+                  }}
+                >
                   {stats.highest}%
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 500,
+                  }}
+                >
                   Highest Score
                 </Typography>
               </CardContent>
@@ -280,186 +475,435 @@ const StudentResults = () => {
         </Grid>
 
         {/* Filters and Search */}
-        <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                fullWidth
-                placeholder="Search exams..."
-                variant="outlined"
-                size="small"
-                onChange={(e) => handleSearchChange(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
+        <Card
+          elevation={0}
+          sx={{
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+            backdropFilter: "blur(10px)",
+            borderRadius: 3,
+            border: "1px solid rgba(255,255,255,0.2)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            mb: 3,
+          }}
+        >
+          <CardContent sx={{ p: 3 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                mb: 3,
+                fontWeight: "bold",
+                background: "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Search & Filter
+            </Typography>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  fullWidth
+                  placeholder="Search exams..."
+                  variant="outlined"
+                  size="small"
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search sx={{ color: "#ff5722" }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: 2,
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                    },
+                  }}
+                />
+              </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <FormControl fullWidth size="small">
-                <InputLabel>Filter by Status</InputLabel>
-                <Select
-                  value={filterStatus}
-                  label="Filter by Status"
-                  onChange={(e) => {
-                    setFilterStatus(e.target.value);
-                    setPage(0);
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl
+                  fullWidth
+                  size="small"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: 2,
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                    },
+                    "& .MuiInputLabel-root": {
+                      "&.Mui-focused": {
+                        color: "#ff5722",
+                      },
+                    },
                   }}
                 >
-                  <MenuItem value="all">All Results</MenuItem>
-                  <MenuItem value="passed">Passed (≥60%)</MenuItem>
-                  <MenuItem value="failed">Failed (&lt;60%)</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+                  <InputLabel>Filter by Status</InputLabel>
+                  <Select
+                    value={filterStatus}
+                    label="Filter by Status"
+                    onChange={(e) => {
+                      setFilterStatus(e.target.value);
+                      setPage(0);
+                    }}
+                  >
+                    <MenuItem value="all">All Results</MenuItem>
+                    <MenuItem value="passed">Passed</MenuItem>
+                    <MenuItem value="failed">Failed</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <FormControl fullWidth size="small">
-                <InputLabel>Sort By</InputLabel>
-                <Select
-                  value={sortBy}
-                  label="Sort By"
-                  onChange={(e) => {
-                    setSortBy(e.target.value);
-                    setPage(0);
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl
+                  fullWidth
+                  size="small"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: 2,
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ff5722",
+                      },
+                    },
+                    "& .MuiInputLabel-root": {
+                      "&.Mui-focused": {
+                        color: "#ff5722",
+                      },
+                    },
                   }}
                 >
-                  <MenuItem value="submittedAt">Date</MenuItem>
-                  <MenuItem value="percentage">Score</MenuItem>
-                  <MenuItem value="examTitle">Exam Name</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+                  <InputLabel>Sort By</InputLabel>
+                  <Select
+                    value={sortBy}
+                    label="Sort By"
+                    onChange={(e) => {
+                      setSortBy(e.target.value);
+                      setPage(0);
+                    }}
+                  >
+                    <MenuItem value="newest">Newest First</MenuItem>
+                    <MenuItem value="oldest">Oldest First</MenuItem>
+                    <MenuItem value="highest">Highest Score</MenuItem>
+                    <MenuItem value="lowest">Lowest Score</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() =>
-                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-                }
-                startIcon={<FilterList />}
-              >
-                {sortOrder === "asc" ? "Asc" : "Desc"}
-              </Button>
+              <Grid item xs={12} sm={6} md={2}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => {
+                    setSearchTerm("");
+                    setFilterStatus("all");
+                    setSortBy("newest");
+                    setPage(0);
+                  }}
+                  sx={{
+                    borderColor: "#ff5722",
+                    color: "#ff5722",
+                    backgroundColor: "rgba(255, 87, 34, 0.05)",
+                    borderRadius: 2,
+                    "&:hover": {
+                      borderColor: "#ff5722",
+                      backgroundColor: "rgba(255, 87, 34, 0.1)",
+                    },
+                  }}
+                >
+                  Clear
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
+          </CardContent>
+        </Card>
 
         {/* Results Table */}
-        <Paper elevation={2}>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Exam</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Duration</TableCell>
-                  <TableCell>Score</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Actions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {results.map((result) => (
-                  <TableRow key={result._id} hover>
-                    <TableCell>
-                      <Typography variant="subtitle2">
-                        {result.examTitle}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {result.questionsCount} questions
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {formatDate(result.submittedAt)}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {formatDuration(result.timeSpent)} /{" "}
-                        {formatDuration(result.examDuration)}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <Box sx={{ minWidth: 35 }}>
-                          <Typography variant="body2" color="text.secondary">
-                            {result.score}/{result.totalQuestions}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ width: "100%", mr: 1 }}>
-                          <LinearProgress
-                            variant="determinate"
-                            value={result.percentage}
-                            color={getScoreColor(result.percentage)}
-                          />
-                        </Box>
-                        <Box sx={{ minWidth: 35 }}>
-                          <Typography
-                            variant="body2"
-                            color={`${getScoreColor(result.percentage)}.main`}
-                          >
-                            {result.percentage}%
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        icon={getScoreIcon(result.percentage)}
-                        label={result.percentage >= 60 ? "Passed" : "Failed"}
-                        color={getScoreColor(result.percentage)}
-                        size="small"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Tooltip title="View Details">
-                        <IconButton
-                          size="small"
-                          onClick={() => handleViewDetails(result._id)}
-                        >
-                          <Visibility />
-                        </IconButton>
-                      </Tooltip>
-                    </TableCell>
+        <Card
+          elevation={0}
+          sx={{
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+            backdropFilter: "blur(10px)",
+            borderRadius: 3,
+            border: "1px solid rgba(255,255,255,0.2)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+          }}
+        >
+          <CardContent sx={{ p: 0 }}>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow
+                    sx={{
+                      background:
+                        "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+                      "& th": {
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: "0.875rem",
+                      },
+                    }}
+                  >
+                    <TableCell>Exam</TableCell>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Duration</TableCell>
+                    <TableCell>Score</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Actions</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <TableBody>
+                  {results.map((result, index) => (
+                    <TableRow
+                      key={result._id}
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "rgba(255, 87, 34, 0.05)",
+                        },
+                        "&:nth-of-type(even)": {
+                          backgroundColor: "rgba(255, 255, 255, 0.7)",
+                        },
+                        "&:nth-of-type(odd)": {
+                          backgroundColor: "rgba(255, 255, 255, 0.5)",
+                        },
+                      }}
+                    >
+                      <TableCell>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                        >
+                          <Avatar
+                            sx={{
+                              bgcolor: "rgba(255, 87, 34, 0.1)",
+                              color: "#ff5722",
+                              width: 32,
+                              height: 32,
+                              fontSize: "0.875rem",
+                            }}
+                          >
+                            {index + 1}
+                          </Avatar>
+                          <Box>
+                            <Typography
+                              variant="subtitle2"
+                              sx={{
+                                fontWeight: "bold",
+                                color: "text.primary",
+                              }}
+                            >
+                              {result.examTitle}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "text.secondary",
+                                fontSize: "0.75rem",
+                              }}
+                            >
+                              {result.questionsCount} questions
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {formatDate(result.submittedAt)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {formatDuration(result.timeSpent)} /{" "}
+                          {formatDuration(result.examDuration)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        >
+                          <Box sx={{ minWidth: 35 }}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "text.secondary",
+                                fontSize: "0.75rem",
+                              }}
+                            >
+                              {result.score}/{result.totalQuestions}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ width: "100%", mr: 1 }}>
+                            <LinearProgress
+                              variant="determinate"
+                              value={result.percentage}
+                              color={getScoreColor(result.percentage)}
+                              sx={{
+                                height: 8,
+                                borderRadius: 4,
+                                backgroundColor: "rgba(0,0,0,0.1)",
+                              }}
+                            />
+                          </Box>
+                          <Box sx={{ minWidth: 45 }}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: `${getScoreColor(
+                                  result.percentage
+                                )}.main`,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {result.percentage}%
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        <Chip
+                          icon={getScoreIcon(result.percentage)}
+                          label={result.percentage >= 60 ? "Passed" : "Failed"}
+                          color={getScoreColor(result.percentage)}
+                          size="small"
+                          sx={{
+                            fontWeight: "bold",
+                            "& .MuiChip-icon": {
+                              fontSize: "1rem",
+                            },
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Tooltip title="View Details">
+                          <IconButton
+                            size="small"
+                            onClick={() => handleViewDetails(result._id)}
+                            sx={{
+                              color: "#ff5722",
+                              backgroundColor: "rgba(255, 87, 34, 0.1)",
+                              "&:hover": {
+                                backgroundColor: "rgba(255, 87, 34, 0.2)",
+                              },
+                            }}
+                          >
+                            <Visibility />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
 
-          {results.length === 0 && !loading && (
-            <Box sx={{ textAlign: "center", py: 4 }}>
-              <Typography variant="body1" color="text.secondary">
-                No results found.
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                Complete some exams to see your results here.
-              </Typography>
+            {results.length === 0 && !loading && (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  py: 8,
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)",
+                }}
+              >
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(255, 87, 34, 0.1)",
+                    color: "#ff5722",
+                    width: 64,
+                    height: 64,
+                    mx: "auto",
+                    mb: 2,
+                  }}
+                >
+                  <Assessment sx={{ fontSize: 32 }} />
+                </Avatar>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "text.primary",
+                    mb: 1,
+                    fontWeight: "bold",
+                  }}
+                >
+                  No results found
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "text.secondary",
+                    maxWidth: 400,
+                    mx: "auto",
+                  }}
+                >
+                  Complete some exams to see your results here. Your performance
+                  analytics will appear once you start taking exams.
+                </Typography>
+              </Box>
+            )}
+
+            <Box
+              sx={{
+                p: 2,
+                borderTop: "1px solid rgba(255,255,255,0.2)",
+                backgroundColor: "rgba(255,255,255,0.5)",
+              }}
+            >
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={totalResults}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={(event, newPage) => setPage(newPage)}
+                onRowsPerPageChange={(event) => {
+                  setRowsPerPage(parseInt(event.target.value, 10));
+                  setPage(0);
+                }}
+                sx={{
+                  "& .MuiTablePagination-toolbar": {
+                    color: "text.primary",
+                  },
+                  "& .MuiTablePagination-selectIcon": {
+                    color: "#ff5722",
+                  },
+                  "& .MuiTablePagination-actions button": {
+                    color: "#ff5722",
+                  },
+                }}
+              />
             </Box>
-          )}
-
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={totalResults}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={(event, newPage) => setPage(newPage)}
-            onRowsPerPageChange={(event) => {
-              setRowsPerPage(parseInt(event.target.value, 10));
-              setPage(0);
-            }}
-          />
-        </Paper>
+          </CardContent>
+        </Card>
 
         {/* Result Detail Dialog */}
         <Dialog
@@ -467,8 +911,24 @@ const StudentResults = () => {
           onClose={() => setDetailDialogOpen(false)}
           maxWidth="md"
           fullWidth
+          PaperProps={{
+            sx: {
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+              backdropFilter: "blur(10px)",
+              borderRadius: 3,
+              border: "1px solid rgba(255,255,255,0.2)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            },
+          }}
         >
-          <DialogTitle>
+          <DialogTitle
+            sx={{
+              background: "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+              color: "white",
+              p: 3,
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -476,48 +936,163 @@ const StudentResults = () => {
                 alignItems: "center",
               }}
             >
-              <Typography variant="h6">
-                {selectedResult?.examTitle} - Detailed Results
-              </Typography>
-              <IconButton onClick={() => setDetailDialogOpen(false)}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Avatar
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.2)",
+                    color: "white",
+                  }}
+                >
+                  <Assessment />
+                </Avatar>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    {selectedResult?.examTitle} - Detailed Results
+                  </Typography>
+                  <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                    Comprehensive performance analysis
+                  </Typography>
+                </Box>
+              </Box>
+              <IconButton
+                onClick={() => setDetailDialogOpen(false)}
+                sx={{
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                  },
+                }}
+              >
                 <Close />
               </IconButton>
             </Box>
           </DialogTitle>
-          <DialogContent>
+          <DialogContent sx={{ p: 3 }}>
             {selectedResult && (
               <Box>
-                {/* Summary */}
+                {/* Summary Cards */}
                 <Grid container spacing={2} sx={{ mb: 3 }}>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">
-                      Score
-                    </Typography>
-                    <Typography variant="h6">
-                      {selectedResult.score}/{selectedResult.totalQuestions} (
-                      {selectedResult.percentage}%)
-                    </Typography>
+                  <Grid item xs={6} sm={3}>
+                    <Card
+                      elevation={0}
+                      sx={{
+                        background: "rgba(76, 175, 80, 0.1)",
+                        border: "1px solid rgba(76, 175, 80, 0.2)",
+                        textAlign: "center",
+                        p: 2,
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        Score
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#4caf50", fontWeight: "bold" }}
+                      >
+                        {selectedResult.score}/{selectedResult.totalQuestions}
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: "#4caf50" }}>
+                        ({selectedResult.percentage}%)
+                      </Typography>
+                    </Card>
                   </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">
-                      Time Spent
-                    </Typography>
-                    <Typography variant="h6">
-                      {formatDuration(selectedResult.timeSpent)}
-                    </Typography>
+                  <Grid item xs={6} sm={3}>
+                    <Card
+                      elevation={0}
+                      sx={{
+                        background: "rgba(33, 150, 243, 0.1)",
+                        border: "1px solid rgba(33, 150, 243, 0.2)",
+                        textAlign: "center",
+                        p: 2,
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        Duration
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        sx={{ color: "#2196f3", fontWeight: "bold" }}
+                      >
+                        {formatDuration(selectedResult.timeSpent)}
+                      </Typography>
+                    </Card>
+                  </Grid>
+                  <Grid item xs={6} sm={3}>
+                    <Card
+                      elevation={0}
+                      sx={{
+                        background: "rgba(255, 193, 7, 0.1)",
+                        border: "1px solid rgba(255, 193, 7, 0.2)",
+                        textAlign: "center",
+                        p: 2,
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        Submitted
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ color: "#ff9800", fontWeight: "bold" }}
+                      >
+                        {formatDate(selectedResult.submittedAt)}
+                      </Typography>
+                    </Card>
+                  </Grid>
+                  <Grid item xs={6} sm={3}>
+                    <Card
+                      elevation={0}
+                      sx={{
+                        background:
+                          selectedResult.percentage >= 60
+                            ? "rgba(76, 175, 80, 0.1)"
+                            : "rgba(244, 67, 54, 0.1)",
+                        border:
+                          selectedResult.percentage >= 60
+                            ? "1px solid rgba(76, 175, 80, 0.2)"
+                            : "1px solid rgba(244, 67, 54, 0.2)",
+                        textAlign: "center",
+                        p: 2,
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        Status
+                      </Typography>
+                      <Chip
+                        label={
+                          selectedResult.percentage >= 60 ? "Passed" : "Failed"
+                        }
+                        color={
+                          selectedResult.percentage >= 60 ? "success" : "error"
+                        }
+                        sx={{ fontWeight: "bold", mt: 1 }}
+                      />
+                    </Card>
                   </Grid>
                 </Grid>
 
-                <Divider sx={{ my: 2 }} />
+                <Divider sx={{ my: 3 }} />
 
                 {/* Question-by-Question Analysis */}
-                <Typography variant="h6" gutterBottom>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2,
+                    fontWeight: "bold",
+                    background:
+                      "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
                   Question Analysis
                 </Typography>
-                <List>
+                <List
+                  sx={{ bgcolor: "rgba(255, 255, 255, 0.5)", borderRadius: 2 }}
+                >
                   {selectedResult.questionAnalysis?.map((question, index) => (
                     <React.Fragment key={question.questionId}>
-                      <ListItem>
+                      <ListItem sx={{ py: 2 }}>
                         <ListItemText
                           primary={
                             <Box
@@ -525,11 +1100,35 @@ const StudentResults = () => {
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center",
+                                mb: 1,
                               }}
                             >
-                              <Typography variant="subtitle2">
-                                Question {index + 1}
-                              </Typography>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 1,
+                                }}
+                              >
+                                <Avatar
+                                  sx={{
+                                    bgcolor: question.isCorrect
+                                      ? "#4caf50"
+                                      : "#f44336",
+                                    width: 24,
+                                    height: 24,
+                                    fontSize: "0.75rem",
+                                  }}
+                                >
+                                  {index + 1}
+                                </Avatar>
+                                <Typography
+                                  variant="subtitle2"
+                                  sx={{ fontWeight: "bold" }}
+                                >
+                                  Question {index + 1}
+                                </Typography>
+                              </Box>
                               <Chip
                                 icon={
                                   question.isCorrect ? (
@@ -543,17 +1142,27 @@ const StudentResults = () => {
                                 }
                                 color={question.isCorrect ? "success" : "error"}
                                 size="small"
+                                sx={{ fontWeight: "bold" }}
                               />
                             </Box>
                           }
                           secondary={
                             <Box sx={{ mt: 1 }}>
-                              <Typography variant="body2" sx={{ mb: 1 }}>
+                              <Typography
+                                variant="body2"
+                                sx={{ mb: 1, fontWeight: 500 }}
+                              >
                                 {question.questionText}
                               </Typography>
                               <Typography
                                 variant="body2"
-                                color="text.secondary"
+                                sx={{
+                                  color: "text.secondary",
+                                  mb: 1,
+                                  p: 1,
+                                  bgcolor: "rgba(0,0,0,0.05)",
+                                  borderRadius: 1,
+                                }}
                               >
                                 Your answer:{" "}
                                 <strong>
@@ -563,7 +1172,13 @@ const StudentResults = () => {
                               {!question.isCorrect && (
                                 <Typography
                                   variant="body2"
-                                  color="success.main"
+                                  sx={{
+                                    color: "success.main",
+                                    p: 1,
+                                    bgcolor: "rgba(76, 175, 80, 0.1)",
+                                    borderRadius: 1,
+                                    fontWeight: 500,
+                                  }}
                                 >
                                   Correct answer:{" "}
                                   <strong>{question.correctAnswer}</strong>
@@ -582,8 +1197,29 @@ const StudentResults = () => {
               </Box>
             )}
           </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setDetailDialogOpen(false)}>Close</Button>
+          <DialogActions
+            sx={{
+              p: 3,
+              background: "rgba(255, 255, 255, 0.7)",
+              borderTop: "1px solid rgba(255,255,255,0.2)",
+            }}
+          >
+            <Button
+              onClick={() => setDetailDialogOpen(false)}
+              variant="contained"
+              sx={{
+                background: "linear-gradient(45deg, #ff5722 30%, #ff9800 90%)",
+                color: "white",
+                fontWeight: "bold",
+                px: 4,
+                "&:hover": {
+                  background:
+                    "linear-gradient(45deg, #e64a19 30%, #f57c00 90%)",
+                },
+              }}
+            >
+              Close
+            </Button>
           </DialogActions>
         </Dialog>
       </Box>

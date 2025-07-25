@@ -345,26 +345,59 @@ const ExamInterface = () => {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "grey.50" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fa" }}>
       {/* Fixed Header */}
-      <AppBar position="fixed" color="default" elevation={1}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            {exam.title}
-          </Typography>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          background: "linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)",
+          boxShadow: "0 4px 20px rgba(25, 118, 210, 0.3)",
+        }}
+      >
+        <Toolbar sx={{ py: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mr: 3 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                textShadow: "0 2px 4px rgba(0,0,0,0.1)",
+              }}
+            >
+              {exam.title}
+            </Typography>
+          </Box>
+
+          <Box sx={{ flexGrow: 1 }} />
 
           {/* Timer */}
-          <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              mr: 2,
+              bgcolor: "rgba(255, 255, 255, 0.15)",
+              px: 2,
+              py: 1,
+              borderRadius: 2,
+              backdropFilter: "blur(10px)",
+            }}
+          >
             <AccessTime
               sx={{
                 mr: 1,
-                color: timeRemaining < 300 ? "error.main" : "text.secondary",
+                color:
+                  timeRemaining < 300 ? "#ffeb3b" : "rgba(255, 255, 255, 0.9)",
               }}
             />
             <Typography
               variant="h6"
-              color={timeRemaining < 300 ? "error.main" : "text.primary"}
-              sx={{ fontFamily: "monospace", minWidth: "80px" }}
+              sx={{
+                fontFamily: "monospace",
+                minWidth: "80px",
+                color: timeRemaining < 300 ? "#ffeb3b" : "white",
+                fontWeight: "bold",
+              }}
             >
               {formatTimeRemaining(timeRemaining)}
             </Typography>
@@ -373,13 +406,13 @@ const ExamInterface = () => {
           {/* Auto-save indicator */}
           {autoSaving && (
             <Tooltip title="Auto-saving...">
-              <Save sx={{ mr: 2, color: "primary.main" }} />
+              <Save sx={{ mr: 2, color: "rgba(255, 255, 255, 0.9)" }} />
             </Tooltip>
           )}
 
           {lastSaved && (
             <Tooltip title={`Last saved: ${lastSaved.toLocaleTimeString()}`}>
-              <CheckCircle sx={{ mr: 2, color: "success.main" }} />
+              <CheckCircle sx={{ mr: 2, color: "#4caf50" }} />
             </Tooltip>
           )}
         </Toolbar>
@@ -389,33 +422,91 @@ const ExamInterface = () => {
       <Box sx={{ pt: 8, pb: 2 }}>
         <Box sx={{ maxWidth: "1200px", mx: "auto", px: 2 }}>
           {/* Progress Bar */}
-          <Paper elevation={1} sx={{ p: 2, mb: 2 }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: 3,
+              mb: 3,
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)",
+              backdropFilter: "blur(10px)",
+              borderRadius: 3,
+              border: "1px solid rgba(255,255,255,0.2)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                mb: 1,
+                mb: 2,
               }}
             >
-              <Typography variant="body2">
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
+                  color: "primary.main",
+                }}
+              >
                 Question {currentQuestionIndex + 1} of {questions.length}
               </Typography>
-              <Typography variant="body2">
-                Answered: {getAnsweredCount()}/{questions.length}
-              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  bgcolor: "rgba(25, 118, 210, 0.1)",
+                  px: 2,
+                  py: 1,
+                  borderRadius: 2,
+                }}
+              >
+                <CheckCircle sx={{ color: "success.main", fontSize: 20 }} />
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    color: "text.primary",
+                  }}
+                >
+                  Answered: {getAnsweredCount()}/{questions.length}
+                </Typography>
+              </Box>
             </Box>
             <LinearProgress
               variant="determinate"
               value={progress}
-              sx={{ height: 8, borderRadius: 4 }}
+              sx={{
+                height: 12,
+                borderRadius: 6,
+                bgcolor: "rgba(0,0,0,0.1)",
+                "& .MuiLinearProgress-bar": {
+                  background:
+                    "linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)",
+                  borderRadius: 6,
+                },
+              }}
             />
           </Paper>
 
           <Grid container spacing={2}>
             {/* Question Panel */}
             <Grid item xs={12} md={8}>
-              <Paper elevation={2} sx={{ p: 3, minHeight: "500px" }}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  minHeight: "500px",
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                }}
+              >
                 {/* Question Header */}
                 <Box
                   sx={{
@@ -423,18 +514,47 @@ const ExamInterface = () => {
                     justifyContent: "space-between",
                     alignItems: "flex-start",
                     mb: 3,
+                    pb: 2,
+                    borderBottom: "2px solid rgba(25, 118, 210, 0.1)",
                   }}
                 >
-                  <Typography variant="h6" component="h2">
-                    Question {currentQuestionIndex + 1}
-                  </Typography>
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      component="h2"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "primary.main",
+                        mb: 1,
+                      }}
+                    >
+                      Question {currentQuestionIndex + 1}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "text.secondary",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Select one answer from the options below
+                    </Typography>
+                  </Box>
                   <IconButton
                     onClick={() => handleFlagQuestion(currentQuestion._id)}
-                    color={
-                      flaggedQuestions.has(currentQuestion._id)
-                        ? "warning"
-                        : "default"
-                    }
+                    sx={{
+                      bgcolor: flaggedQuestions.has(currentQuestion._id)
+                        ? "rgba(255, 193, 7, 0.1)"
+                        : "rgba(0,0,0,0.05)",
+                      color: flaggedQuestions.has(currentQuestion._id)
+                        ? "warning.main"
+                        : "text.secondary",
+                      "&:hover": {
+                        bgcolor: "warning.light",
+                        transform: "scale(1.1)",
+                      },
+                      transition: "all 0.3s ease",
+                    }}
                   >
                     {flaggedQuestions.has(currentQuestion._id) ? (
                       <Flag />
@@ -445,9 +565,27 @@ const ExamInterface = () => {
                 </Box>
 
                 {/* Question Text */}
-                <Typography variant="body1" sx={{ mb: 4, lineHeight: 1.6 }}>
-                  {currentQuestion.questionText}
-                </Typography>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    mb: 4,
+                    bgcolor: "rgba(25, 118, 210, 0.05)",
+                    border: "1px solid rgba(25, 118, 210, 0.1)",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      lineHeight: 1.6,
+                      color: "text.primary",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {currentQuestion.questionText}
+                  </Typography>
+                </Paper>
 
                 {/* Answer Options */}
                 <FormControl component="fieldset" fullWidth>
@@ -457,28 +595,64 @@ const ExamInterface = () => {
                       handleAnswerChange(currentQuestion._id, e.target.value)
                     }
                   >
-                    {currentQuestion.options.map((option, index) => (
-                      <FormControlLabel
-                        key={index}
-                        value={option}
-                        control={<Radio />}
-                        label={
-                          <Typography variant="body1" sx={{ py: 1 }}>
-                            {option}
-                          </Typography>
-                        }
-                        sx={{
-                          mb: 1,
-                          p: 2,
-                          border: "1px solid",
-                          borderColor: "divider",
-                          borderRadius: 1,
-                          "&:hover": {
-                            bgcolor: "action.hover",
-                          },
-                        }}
-                      />
-                    ))}
+                    {currentQuestion.options.map((option, index) => {
+                      const isSelected =
+                        answers[currentQuestion._id] === option;
+                      return (
+                        <FormControlLabel
+                          key={index}
+                          value={option}
+                          control={
+                            <Radio
+                              sx={{
+                                color: "primary.main",
+                                "&.Mui-checked": {
+                                  color: "primary.main",
+                                },
+                              }}
+                            />
+                          }
+                          label={
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                py: 1,
+                                fontWeight: isSelected ? 600 : 400,
+                                color: isSelected
+                                  ? "primary.main"
+                                  : "text.primary",
+                              }}
+                            >
+                              {String.fromCharCode(65 + index)}. {option}
+                            </Typography>
+                          }
+                          sx={{
+                            mb: 2,
+                            p: 2,
+                            border: "2px solid",
+                            borderColor: isSelected
+                              ? "primary.main"
+                              : "rgba(0,0,0,0.1)",
+                            borderRadius: 2,
+                            bgcolor: isSelected
+                              ? "rgba(25, 118, 210, 0.05)"
+                              : "rgba(255,255,255,0.7)",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              bgcolor: isSelected
+                                ? "rgba(25, 118, 210, 0.1)"
+                                : "rgba(25, 118, 210, 0.05)",
+                              borderColor: "primary.main",
+                              transform: "translateX(4px)",
+                              boxShadow: "0 4px 12px rgba(25, 118, 210, 0.2)",
+                            },
+                            "& .MuiFormControlLabel-label": {
+                              width: "100%",
+                            },
+                          }}
+                        />
+                      );
+                    })}
                   </RadioGroup>
                 </FormControl>
 
@@ -488,6 +662,8 @@ const ExamInterface = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     mt: 4,
+                    pt: 3,
+                    borderTop: "2px solid rgba(25, 118, 210, 0.1)",
                   }}
                 >
                   <Button
@@ -497,6 +673,26 @@ const ExamInterface = () => {
                       handleQuestionNavigation(currentQuestionIndex - 1)
                     }
                     disabled={currentQuestionIndex === 0}
+                    sx={{
+                      px: 3,
+                      py: 1.5,
+                      borderRadius: 3,
+                      fontWeight: 600,
+                      textTransform: "none",
+                      borderColor: "primary.main",
+                      color: "primary.main",
+                      "&:hover": {
+                        borderColor: "primary.dark",
+                        bgcolor: "rgba(25, 118, 210, 0.05)",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 4px 12px rgba(25, 118, 210, 0.2)",
+                      },
+                      "&:disabled": {
+                        borderColor: "rgba(0,0,0,0.12)",
+                        color: "rgba(0,0,0,0.26)",
+                      },
+                      transition: "all 0.3s ease",
+                    }}
                   >
                     Previous
                   </Button>
@@ -504,6 +700,23 @@ const ExamInterface = () => {
                   <Button
                     variant="contained"
                     onClick={() => setNavigationDialogOpen(true)}
+                    sx={{
+                      px: 3,
+                      py: 1.5,
+                      borderRadius: 3,
+                      fontWeight: 600,
+                      textTransform: "none",
+                      background:
+                        "linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)",
+                      boxShadow: "0 4px 12px rgba(25, 118, 210, 0.3)",
+                      "&:hover": {
+                        background:
+                          "linear-gradient(45deg, #1565c0 30%, #1976d2 90%)",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 6px 16px rgba(25, 118, 210, 0.4)",
+                      },
+                      transition: "all 0.3s ease",
+                    }}
                   >
                     Question Navigator
                   </Button>
@@ -511,9 +724,25 @@ const ExamInterface = () => {
                   {currentQuestionIndex === questions.length - 1 ? (
                     <Button
                       variant="contained"
-                      color="success"
                       startIcon={<Send />}
                       onClick={() => setSubmitDialogOpen(true)}
+                      sx={{
+                        px: 3,
+                        py: 1.5,
+                        borderRadius: 3,
+                        fontWeight: 600,
+                        textTransform: "none",
+                        background:
+                          "linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)",
+                        boxShadow: "0 4px 12px rgba(76, 175, 80, 0.3)",
+                        "&:hover": {
+                          background:
+                            "linear-gradient(45deg, #388e3c 30%, #4caf50 90%)",
+                          transform: "translateY(-2px)",
+                          boxShadow: "0 6px 16px rgba(76, 175, 80, 0.4)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
                     >
                       Submit Exam
                     </Button>
@@ -524,6 +753,22 @@ const ExamInterface = () => {
                       onClick={() =>
                         handleQuestionNavigation(currentQuestionIndex + 1)
                       }
+                      sx={{
+                        px: 3,
+                        py: 1.5,
+                        borderRadius: 3,
+                        fontWeight: 600,
+                        textTransform: "none",
+                        borderColor: "primary.main",
+                        color: "primary.main",
+                        "&:hover": {
+                          borderColor: "primary.dark",
+                          bgcolor: "rgba(25, 118, 210, 0.05)",
+                          transform: "translateY(-2px)",
+                          boxShadow: "0 4px 12px rgba(25, 118, 210, 0.2)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
                     >
                       Next
                     </Button>
@@ -534,12 +779,35 @@ const ExamInterface = () => {
 
             {/* Question Navigator Sidebar */}
             <Grid item xs={12} md={4}>
-              <Paper elevation={2} sx={{ p: 2, position: "sticky", top: 80 }}>
-                <Typography variant="h6" gutterBottom>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 3,
+                  position: "sticky",
+                  top: 100,
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  sx={{
+                    fontWeight: "bold",
+                    color: "primary.main",
+                    mb: 3,
+                    pb: 2,
+                    borderBottom: "2px solid rgba(25, 118, 210, 0.1)",
+                  }}
+                >
                   Question Navigator
                 </Typography>
 
-                <Grid container spacing={1}>
+                <Grid container spacing={1.5}>
                   {questions.map((question, index) => {
                     const status = getQuestionStatus(index);
                     const isCurrentQuestion = index === currentQuestionIndex;
@@ -548,17 +816,52 @@ const ExamInterface = () => {
                       <Grid item xs={3} key={question._id}>
                         <Button
                           variant={isCurrentQuestion ? "contained" : "outlined"}
-                          color={
-                            isCurrentQuestion
-                              ? "primary"
-                              : getStatusColor(status)
-                          }
-                          size="small"
                           onClick={() => handleQuestionNavigation(index)}
                           sx={{
-                            minWidth: "40px",
-                            height: "40px",
-                            fontSize: "0.75rem",
+                            minWidth: "45px",
+                            height: "45px",
+                            fontSize: "0.875rem",
+                            fontWeight: 600,
+                            borderRadius: 2,
+                            ...(isCurrentQuestion
+                              ? {
+                                  background:
+                                    "linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)",
+                                  color: "white",
+                                  boxShadow:
+                                    "0 4px 12px rgba(25, 118, 210, 0.3)",
+                                  "&:hover": {
+                                    background:
+                                      "linear-gradient(45deg, #1565c0 30%, #1976d2 90%)",
+                                    transform: "scale(1.05)",
+                                  },
+                                }
+                              : {
+                                  borderColor:
+                                    getStatusColor(status) === "success"
+                                      ? "#4caf50"
+                                      : getStatusColor(status) === "warning"
+                                      ? "#ff9800"
+                                      : "rgba(0,0,0,0.23)",
+                                  color:
+                                    getStatusColor(status) === "success"
+                                      ? "#4caf50"
+                                      : getStatusColor(status) === "warning"
+                                      ? "#ff9800"
+                                      : "text.primary",
+                                  bgcolor:
+                                    getStatusColor(status) === "success"
+                                      ? "rgba(76, 175, 80, 0.1)"
+                                      : getStatusColor(status) === "warning"
+                                      ? "rgba(255, 152, 0, 0.1)"
+                                      : "rgba(255,255,255,0.7)",
+                                  "&:hover": {
+                                    borderColor: "primary.main",
+                                    bgcolor: "rgba(25, 118, 210, 0.1)",
+                                    transform: "scale(1.05)",
+                                  },
+                                }),
+                            transition: "all 0.3s ease",
                           }}
                         >
                           {index + 1}
@@ -569,36 +872,106 @@ const ExamInterface = () => {
                 </Grid>
 
                 {/* Legend */}
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="body2" gutterBottom>
+                <Box sx={{ mt: 4 }}>
+                  <Typography
+                    variant="subtitle1"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 600,
+                      color: "text.primary",
+                      mb: 2,
+                    }}
+                  >
                     Legend:
                   </Typography>
                   <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}
+                    sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}
                   >
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Chip size="small" color="success" label="A" />
-                      <Typography variant="caption">Answered</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: 1,
+                          bgcolor: "rgba(76, 175, 80, 0.1)",
+                          border: "2px solid #4caf50",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <CheckCircle sx={{ fontSize: 16, color: "#4caf50" }} />
+                      </Box>
+                      <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                        Answered
+                      </Typography>
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Chip size="small" color="warning" label="F" />
-                      <Typography variant="caption">Flagged</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: 1,
+                          bgcolor: "rgba(255, 152, 0, 0.1)",
+                          border: "2px solid #ff9800",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Flag sx={{ fontSize: 16, color: "#ff9800" }} />
+                      </Box>
+                      <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                        Flagged
+                      </Typography>
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Chip size="small" color="default" label="U" />
-                      <Typography variant="caption">Unanswered</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: 1,
+                          bgcolor: "rgba(0,0,0,0.05)",
+                          border: "2px solid rgba(0,0,0,0.23)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <RadioButtonUnchecked
+                          sx={{ fontSize: 16, color: "text.secondary" }}
+                        />
+                      </Box>
+                      <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                        Unanswered
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
 
                 {/* Quick Actions */}
-                <Box sx={{ mt: 3 }}>
+                <Box sx={{ mt: 4 }}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     onClick={() => setSubmitDialogOpen(true)}
-                    color="success"
                     startIcon={<Send />}
+                    sx={{
+                      py: 1.5,
+                      borderRadius: 3,
+                      fontWeight: 600,
+                      textTransform: "none",
+                      background:
+                        "linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)",
+                      boxShadow: "0 4px 12px rgba(76, 175, 80, 0.3)",
+                      "&:hover": {
+                        background:
+                          "linear-gradient(45deg, #388e3c 30%, #4caf50 90%)",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 6px 16px rgba(76, 175, 80, 0.4)",
+                      },
+                      transition: "all 0.3s ease",
+                    }}
                   >
                     Submit Exam
                   </Button>
@@ -613,33 +986,88 @@ const ExamInterface = () => {
       <Dialog
         open={submitDialogOpen}
         onClose={() => setSubmitDialogOpen(false)}
+        PaperProps={{
+          sx: {
+            borderRadius: 3,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+            backdropFilter: "blur(10px)",
+          },
+        }}
       >
-        <DialogTitle>Submit Exam</DialogTitle>
-        <DialogContent>
-          <Typography gutterBottom>
+        <DialogTitle
+          sx={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+            color: "primary.main",
+            borderBottom: "2px solid rgba(25, 118, 210, 0.1)",
+            pb: 2,
+          }}
+        >
+          Submit Exam
+        </DialogTitle>
+        <DialogContent sx={{ py: 3 }}>
+          <Typography gutterBottom sx={{ fontSize: "1.1rem", mb: 2 }}>
             Are you sure you want to submit your exam?
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            You have answered {getAnsweredCount()} out of {questions.length}{" "}
-            questions.
-            {questions.length - getAnsweredCount() > 0 && (
-              <span style={{ color: "orange" }}>
-                {" "}
-                {questions.length - getAnsweredCount()} questions remain
-                unanswered.
-              </span>
-            )}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Time remaining: {formatTimeRemaining(timeRemaining)}
-          </Typography>
+          <Box
+            sx={{
+              p: 2,
+              bgcolor: "rgba(25, 118, 210, 0.05)",
+              borderRadius: 2,
+              border: "1px solid rgba(25, 118, 210, 0.1)",
+              mb: 2,
+            }}
+          >
+            <Typography variant="body1" sx={{ fontWeight: 600, mb: 1 }}>
+              Exam Summary:
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              You have answered {getAnsweredCount()} out of {questions.length}{" "}
+              questions.
+              {questions.length - getAnsweredCount() > 0 && (
+                <span style={{ color: "#ff9800", fontWeight: 600 }}>
+                  {" "}
+                  {questions.length - getAnsweredCount()} questions remain
+                  unanswered.
+                </span>
+              )}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              Time remaining: {formatTimeRemaining(timeRemaining)}
+            </Typography>
+          </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setSubmitDialogOpen(false)}>Cancel</Button>
+        <DialogActions sx={{ p: 3, pt: 0 }}>
+          <Button
+            onClick={() => setSubmitDialogOpen(false)}
+            sx={{
+              px: 3,
+              py: 1,
+              borderRadius: 2,
+              textTransform: "none",
+              fontWeight: 600,
+            }}
+          >
+            Cancel
+          </Button>
           <Button
             onClick={handleSubmitExam}
             variant="contained"
-            color="success"
+            sx={{
+              px: 3,
+              py: 1,
+              borderRadius: 2,
+              textTransform: "none",
+              fontWeight: 600,
+              background: "linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)",
+              boxShadow: "0 4px 12px rgba(76, 175, 80, 0.3)",
+              "&:hover": {
+                background: "linear-gradient(45deg, #388e3c 30%, #4caf50 90%)",
+                boxShadow: "0 6px 16px rgba(76, 175, 80, 0.4)",
+              },
+            }}
           >
             Submit
           </Button>
