@@ -332,56 +332,267 @@ const UserManagement = () => {
   return (
     <Box>
       {/* Header */}
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          User Management
-        </Typography>
+      <Box
+        sx={{
+          mb: 3,
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)",
+          backdropFilter: "blur(10px)",
+          borderRadius: 3,
+          p: 4,
+          border: "1px solid rgba(255,255,255,0.2)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Avatar
+            sx={{
+              bgcolor: "primary.main",
+              mr: 2,
+              width: 48,
+              height: 48,
+              background: "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+            }}
+          >
+            <PersonAdd />
+          </Avatar>
+          <Box>
+            <Typography
+              variant="h4"
+              component="h1"
+              sx={{
+                fontWeight: "bold",
+                background: "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                mb: 1,
+              }}
+            >
+              User Management
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "text.secondary",
+                fontWeight: 500,
+              }}
+            >
+              Manage system users and permissions
+            </Typography>
+          </Box>
+        </Box>
 
         {/* Statistics Cards */}
         {stats && (
-          <Grid container spacing={2} sx={{ mb: 3 }}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3}>
-              <Card>
-                <CardContent>
-                  <Typography color="textSecondary" gutterBottom>
+              <Card
+                elevation={0}
+                sx={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                  },
+                }}
+              >
+                <CardContent sx={{ textAlign: "center", p: 3 }}>
+                  <Avatar
+                    sx={{
+                      bgcolor: "rgba(33, 150, 243, 0.1)",
+                      color: "#2196f3",
+                      mx: "auto",
+                      mb: 2,
+                      width: 56,
+                      height: 56,
+                    }}
+                  >
+                    <PersonAdd sx={{ fontSize: 28 }} />
+                  </Avatar>
+                  <Typography
+                    variant="h3"
+                    component="div"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#2196f3",
+                      mb: 1,
+                    }}
+                  >
+                    {stats?.totalUsers || 0}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 500,
+                    }}
+                  >
                     Total Users
                   </Typography>
-                  <Typography variant="h4">{stats?.totalUsers || 0}</Typography>
                 </CardContent>
               </Card>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Card>
-                <CardContent>
-                  <Typography color="textSecondary" gutterBottom>
-                    Active Users
-                  </Typography>
-                  <Typography variant="h4">
+              <Card
+                elevation={0}
+                sx={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                  },
+                }}
+              >
+                <CardContent sx={{ textAlign: "center", p: 3 }}>
+                  <Avatar
+                    sx={{
+                      bgcolor: "rgba(76, 175, 80, 0.1)",
+                      color: "#4caf50",
+                      mx: "auto",
+                      mb: 2,
+                      width: 56,
+                      height: 56,
+                    }}
+                  >
+                    <CheckCircle sx={{ fontSize: 28 }} />
+                  </Avatar>
+                  <Typography
+                    variant="h3"
+                    component="div"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#4caf50",
+                      mb: 1,
+                    }}
+                  >
                     {stats?.activeUsers || 0}
                   </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Active Users
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Card>
-                <CardContent>
-                  <Typography color="textSecondary" gutterBottom>
-                    Students
-                  </Typography>
-                  <Typography variant="h4">
+              <Card
+                elevation={0}
+                sx={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                  },
+                }}
+              >
+                <CardContent sx={{ textAlign: "center", p: 3 }}>
+                  <Avatar
+                    sx={{
+                      bgcolor: "rgba(156, 39, 176, 0.1)",
+                      color: "#9c27b0",
+                      mx: "auto",
+                      mb: 2,
+                      width: 56,
+                      height: 56,
+                    }}
+                  >
+                    <PersonAdd sx={{ fontSize: 28 }} />
+                  </Avatar>
+                  <Typography
+                    variant="h3"
+                    component="div"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#9c27b0",
+                      mb: 1,
+                    }}
+                  >
                     {stats?.studentCount || 0}
                   </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Students
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Card>
-                <CardContent>
-                  <Typography color="textSecondary" gutterBottom>
-                    New This Month
-                  </Typography>
-                  <Typography variant="h4">
+              <Card
+                elevation={0}
+                sx={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 3,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+                  },
+                }}
+              >
+                <CardContent sx={{ textAlign: "center", p: 3 }}>
+                  <Avatar
+                    sx={{
+                      bgcolor: "rgba(255, 152, 0, 0.1)",
+                      color: "#ff9800",
+                      mx: "auto",
+                      mb: 2,
+                      width: 56,
+                      height: 56,
+                    }}
+                  >
+                    <Add sx={{ fontSize: 28 }} />
+                  </Avatar>
+                  <Typography
+                    variant="h3"
+                    component="div"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#ff9800",
+                      mb: 1,
+                    }}
+                  >
                     {stats?.recentUserCount || 0}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 500,
+                    }}
+                  >
+                    New This Month
                   </Typography>
                 </CardContent>
               </Card>
@@ -391,7 +602,18 @@ const UserManagement = () => {
       </Box>
 
       {/* Toolbar */}
-      <Paper sx={{ mb: 2 }}>
+      <Paper
+        elevation={0}
+        sx={{
+          mb: 3,
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+          backdropFilter: "blur(10px)",
+          borderRadius: 3,
+          border: "1px solid rgba(255,255,255,0.2)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+        }}
+      >
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} md={4}>
@@ -402,9 +624,19 @@ const UserManagement = () => {
                 value={searchTerm}
                 onChange={handleSearch}
                 InputProps={{
-                  startAdornment: (
-                    <Search sx={{ mr: 1, color: "text.secondary" }} />
-                  ),
+                  startAdornment: <Search sx={{ mr: 1, color: "#667eea" }} />,
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    borderRadius: 2,
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#667eea",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#667eea",
+                    },
+                  },
                 }}
               />
             </Grid>
@@ -442,6 +674,21 @@ const UserManagement = () => {
                   variant="contained"
                   startIcon={<Add />}
                   onClick={() => handleOpenDialog("create")}
+                  sx={{
+                    borderRadius: 2,
+                    textTransform: "none",
+                    fontWeight: 600,
+                    background:
+                      "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+                    boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                    "&:hover": {
+                      background:
+                        "linear-gradient(45deg, #5a6fd8 30%, #6a4190 90%)",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 6px 16px rgba(102, 126, 234, 0.4)",
+                    },
+                    transition: "all 0.3s ease",
+                  }}
                 >
                   Add User
                 </Button>
@@ -451,6 +698,17 @@ const UserManagement = () => {
                   onClick={() => {
                     /* TODO: Implement CSV import */
                   }}
+                  sx={{
+                    borderRadius: 2,
+                    textTransform: "none",
+                    fontWeight: 600,
+                    borderColor: "#667eea",
+                    color: "#667eea",
+                    "&:hover": {
+                      borderColor: "#5a6fd8",
+                      bgcolor: "rgba(102, 126, 234, 0.05)",
+                    },
+                  }}
                 >
                   Import
                 </Button>
@@ -458,10 +716,29 @@ const UserManagement = () => {
                   variant="outlined"
                   startIcon={<Download />}
                   onClick={handleExport}
+                  sx={{
+                    borderRadius: 2,
+                    textTransform: "none",
+                    fontWeight: 600,
+                    borderColor: "#667eea",
+                    color: "#667eea",
+                    "&:hover": {
+                      borderColor: "#5a6fd8",
+                      bgcolor: "rgba(102, 126, 234, 0.05)",
+                    },
+                  }}
                 >
                   Export
                 </Button>
-                <IconButton onClick={fetchUsers}>
+                <IconButton
+                  onClick={fetchUsers}
+                  sx={{
+                    color: "#667eea",
+                    "&:hover": {
+                      bgcolor: "rgba(102, 126, 234, 0.1)",
+                    },
+                  }}
+                >
                   <Refresh />
                 </IconButton>
               </Box>
@@ -472,15 +749,26 @@ const UserManagement = () => {
         {/* Bulk Actions */}
         {selectedUsers.length > 0 && (
           <Toolbar
-            sx={{ bgcolor: "primary.light", color: "primary.contrastText" }}
+            sx={{
+              bgcolor: "rgba(102, 126, 234, 0.1)",
+              color: "#667eea",
+              borderRadius: 2,
+              mt: 1,
+            }}
           >
-            <Typography sx={{ flex: "1 1 100%" }}>
+            <Typography sx={{ flex: "1 1 100%", fontWeight: 600 }}>
               {selectedUsers.length} selected
             </Typography>
             <Button
               color="inherit"
               startIcon={<Delete />}
               onClick={handleBulkDelete}
+              sx={{
+                color: "#f44336",
+                "&:hover": {
+                  bgcolor: "rgba(244, 67, 54, 0.1)",
+                },
+              }}
             >
               Delete Selected
             </Button>
@@ -489,7 +777,17 @@ const UserManagement = () => {
       </Paper>
 
       {/* Users Table */}
-      <Paper>
+      <Paper
+        elevation={0}
+        sx={{
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
+          backdropFilter: "blur(10px)",
+          borderRadius: 3,
+          border: "1px solid rgba(255,255,255,0.2)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+        }}
+      >
         <TableContainer>
           <Table>
             <TableHead>
@@ -650,8 +948,24 @@ const UserManagement = () => {
         onClose={handleCloseDialog}
         maxWidth="md"
         fullWidth
+        PaperProps={{
+          sx: {
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(20px)",
+            borderRadius: 3,
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 8px 32px rgba(102, 126, 234, 0.1)",
+          },
+        }}
       >
-        <DialogTitle>
+        <DialogTitle
+          sx={{
+            background: "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+            color: "white",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
           {dialogMode === "create"
             ? "Add New User"
             : dialogMode === "edit"
@@ -795,10 +1109,37 @@ const UserManagement = () => {
               )}
             </Grid>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseDialog}>Cancel</Button>
+          <DialogActions sx={{ p: 3 }}>
+            <Button
+              onClick={handleCloseDialog}
+              sx={{
+                borderRadius: 2,
+                textTransform: "none",
+                fontWeight: 600,
+              }}
+            >
+              Cancel
+            </Button>
             {dialogMode !== "view" && (
-              <Button type="submit" variant="contained">
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  borderRadius: 2,
+                  textTransform: "none",
+                  fontWeight: 600,
+                  background:
+                    "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+                  boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                  "&:hover": {
+                    background:
+                      "linear-gradient(45deg, #5a6fd8 30%, #6a4190 90%)",
+                    transform: "translateY(-2px)",
+                    boxShadow: "0 6px 16px rgba(102, 126, 234, 0.4)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
                 {dialogMode === "create" ? "Create User" : "Update User"}
               </Button>
             )}
